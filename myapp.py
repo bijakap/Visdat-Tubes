@@ -29,14 +29,14 @@ colums_select = Select(value=case, title='Case', options=list(df_Column ), name=
 
 #init figure kosong
 plt = figure(sizing_mode="stretch_width", title = case)
-x = df.loc[country]
-y = df[case]
-# for i in range(len(df)):
-#     x.append(i)
-# for i in range(100):
-#     y.append(random.random())
+# x = df.loc[country]
+# y = df[case]
+# # for i in range(len(df)):
+# #     x.append(i)
+# # for i in range(100):
+# #     y.append(random.random())
 
-plt.line(x,y)
+# plt.line(x,y)
 
 
 
