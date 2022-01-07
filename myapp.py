@@ -7,3 +7,4 @@ from bokeh.layouts import column, row
 
 
 df = pd.read_csv("./data/country_wise_latest.csv")
+print(df)
