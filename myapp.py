@@ -28,15 +28,13 @@ country_select = Select(value=country, title='Country', options=list(ArrCountry)
 colums_select = Select(value=case, title='Case', options=list(df_Column ), name="case_select")
 
 #init figure kosong
-plt = figure(sizing_mode="stretch_width", title = case)
-# x = df.loc[country]
-# y = df[case]
-# # for i in range(len(df)):
-# #     x.append(i)
-# # for i in range(100):
-# #     y.append(random.random())
-
-# plt.line(x,y)
+testdf = df[df["WHO Region"] == "Africa"]
+ds = ColumnDataSource(testdf)
+plt = figure(x_range=ds.data['Country/Region'], y_range=(0,100000), height=250, title="Percobaan Benua", sizing_mode="stretch_both")
+plt.vbar(x=ds.data['Country/Region'], top=ds.data['Confirmed'], width=0.9)
+plt.xgrid.grid_line_color = None
+plt.y_range.start = 0
+plt.xaxis.major_label_orientation = "vertical"
 
 
 
