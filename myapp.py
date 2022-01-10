@@ -35,7 +35,6 @@ colums_select = Select(value=case, title='Case', options=list(df_Column ), name=
 
 #def fungsi
 def Handle_Change_Dropdown(attrname, old, new):
-    print(region_select.value, country_select.value, colums_select.value)
     if region_select.value == "All":
         country_select.options = list(ArrCountry)
     else :
@@ -51,14 +50,10 @@ def update_plot(region, country, case):
 
     temp = df
     if region != "All":
-        print("1")
         temp = df.loc[df["WHO Region"] == region]
-        print(temp)
     
     if country != "All":
-        print("2")
         temp = df.loc[df['Country/Region'] == country]
-        print(temp)
 
     data = {
         "x" : temp['Country/Region'].values.tolist(),
@@ -67,7 +62,7 @@ def update_plot(region, country, case):
     ds.data.update(data)
     plt.x_range.factors = data['x']
     plt.y_range = Range1d(0, 1000, bounds=(0, None))
-    plt.title.text = "Percobaan Ganti"
+    plt.title.text = "Barplot Benua " + region + ", Negara " + country + ", Kasus " + case 
 
 def Create_Plot():
     global ds
@@ -75,7 +70,7 @@ def Create_Plot():
         ("Nama", "@x"),
         ("Number", "@y"),
     ]
-    p = figure(x_range=ds.data['x'], height=250, title="Percobaan Benua",sizing_mode="stretch_both",tooltips=TOOLTIPS)
+    p = figure(x_range=ds.data['x'], height=250, title="Barplot All",sizing_mode="stretch_both",tooltips=TOOLTIPS)
     p.vbar(x='x', top='y', width=0.9, source=ds)
     p.xgrid.grid_line_color = None
     p.xaxis.major_label_orientation = "vertical"
@@ -113,63 +108,3 @@ main_layout = column(row(controls, plt),sizing_mode="stretch_both")
 curdoc().add_root(main_layout)
 curdoc().title = "Tubes Visdat Boy"
 curdoc().theme = theme
-
-
-
-# def Create_Plot(ds,region, country, case):
-#     TOOLTIPS = [
-#         ("Nama", "@x"),
-#         ("Number", "@y"),
-#     ]
-#     # Orientation = "vertical"
-#     # if region != "All":
-#     #     temp = df[df["WHO Region"] == region]
-#     #     ds = ColumnDataSource(temp)
-#     # else :
-#     #     ds = ColumnDataSource(df)
-    
-#     # if country != "All":
-#     #     result = np.where(ds.data['Country/Region'] == country)
-#     #     data = dict(x = ds.data['Country/Region'][result[0]], y = ds.data[case][result[0]])
-#     #     maxyrange = data["y"][0]
-#     #     Orientation = "horizontal"
-#     # else :
-#     #     data = dict(x = ds.data['Country/Region'], y = ds.data[case])
-#     #     maxyrange = 100000
-        
-
-#     p = figure(x_range=ds.data['x'], y_range=(0,100000), height=250, title="Percobaan Benua",sizing_mode="stretch_both",tooltips=TOOLTIPS)
-#     p.vbar(x='x', top='y', width=0.9, source=ds)
-#     p.xgrid.grid_line_color = None
-#     p.xaxis.major_label_orientation = "vertical"
-#     return p
-
-# js_on_change_region = CustomJS(args=dict(plt=plt), code="""plt.reset.emit(); console.log("Berhasil")""")
-# country_select.js_on_change('value', js_on_change_region)
-# print(type(ds.data['x']))
-# print(ds.data['x'])
-# test = ds.data['x'].loc[ds.data['x'] == 'Angola']
-# print(df[df['Country/Region'] == "Angola"])
-# test = df[df['Country/Region'] == "Angola"]
-# data = {
-#     "x" : test['Country/Region'],
-#     "y" : test[case]
-# }
-
-# TOOLTIPS = [
-#     ("Nama", "@x"),
-#     ("Number", "@y"),
-# ]
-# p = figure(x_range=ds.data['x'], y_range=(0,100000), height=250, title="Percobaan Benua",sizing_mode="stretch_both",tooltips=TOOLTIPS)
-# p.vbar(x='x', top='y', width=0.9, source=ds)
-# p.xgrid.grid_line_color = None
-
-# kode="""
-#     source.data['y'] = df[cb_obj.value];
-#     source.change.emit();
-# """
-
-# callback = CustomJS(args={"df": df ,"source": ds}, code=kode)
-# colums_select.js_on_change('value', callback)
-
-    
