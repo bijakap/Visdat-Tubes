@@ -9,6 +9,6 @@ run:
 
 Then after the requirement is satisfied run :
 
-    bokeh serve --port 5555 --show app
+    bokeh serve --port 5555 --show myapp.py
 
 or just run `serve.bat`
