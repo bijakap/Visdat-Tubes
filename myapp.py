@@ -49,11 +49,13 @@ def update_plot(region, country, case):
     global ds, plt
 
     temp = df
+    plt.xaxis.major_label_orientation = "vertical"
     if region != "All":
         temp = df.loc[df["WHO Region"] == region]
-    
+        
     if country != "All":
         temp = df.loc[df['Country/Region'] == country]
+        plt.xaxis.major_label_orientation = "horizontal"
 
     data = {
         "x" : temp['Country/Region'].values.tolist(),
@@ -70,7 +72,7 @@ def Create_Plot():
         ("Nama", "@x"),
         ("Number", "@y"),
     ]
-    p = figure(x_range=ds.data['x'], height=250, title="Barplot All",sizing_mode="stretch_both",tooltips=TOOLTIPS)
+    p = figure(x_range=ds.data['x'], height=250, title="Barplot All",sizing_mode="stretch_both",tooltips=TOOLTIPS,toolbar_location="left")
     p.vbar(x='x', top='y', width=0.9, source=ds)
     p.xgrid.grid_line_color = None
     p.xaxis.major_label_orientation = "vertical"
@@ -89,7 +91,7 @@ plt = Create_Plot()
 about_text = """
     <style>
         .name {
-            border: 2px solid red;
+            border: 1px solid grey;
             border-radius: 10px;
             width:100%;
         }
