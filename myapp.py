@@ -29,9 +29,9 @@ data = {
 ds = ColumnDataSource(data)
 
 #sidebar dropdown
-region_select = Select(value=region, title='Region', options=list(ArrBenua), name="region_select")
-country_select = Select(value=country, title='Country', options=list(ArrCountry), name="country_select")
-colums_select = Select(value=case, title='Case', options=list(df_Column ), name="case_select")
+region_select = Select(value=region, title='Benua', options=list(ArrBenua), name="region_select")
+country_select = Select(value=country, title='Negara', options=list(ArrCountry), name="country_select")
+colums_select = Select(value=case, title='Kasus', options=list(df_Column ), name="case_select")
 
 #def fungsi
 def Handle_Change_Dropdown(attrname, old, new):
@@ -108,5 +108,5 @@ about = Div(text=about_text, width_policy="max")
 controls = column(row(region_select, country_select, sizing_mode="stretch_width"), colums_select, about)
 main_layout = column(row(controls, plt),sizing_mode="stretch_both")
 curdoc().add_root(main_layout)
-curdoc().title = "Data Covid Per Negara"
+curdoc().title = "Data Covid Per-Negara"
 curdoc().theme = theme
