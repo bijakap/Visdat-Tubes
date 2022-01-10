@@ -108,5 +108,5 @@ about = Div(text=about_text, width_policy="max")
 controls = column(row(region_select, country_select, sizing_mode="stretch_width"), colums_select, about)
 main_layout = column(row(controls, plt),sizing_mode="stretch_both")
 curdoc().add_root(main_layout)
-curdoc().title = "Tubes Visdat Boy"
+curdoc().title = "Data Covid Per Negara"
 curdoc().theme = theme
